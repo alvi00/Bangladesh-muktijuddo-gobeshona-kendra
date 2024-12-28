@@ -61,11 +61,6 @@ document.addEventListener("DOMContentLoaded", function () {
     delay: 7,
   });
 
-  //   gsap.to(".progress-bar", {
-  //     width: "100%",
-  //     duration: 7,
-  //     ease: "linear",
-  //   });
   gsap.to(".progress-bar", {
     width: "100%",
     opacity: 0,
@@ -77,12 +72,33 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  gsap.to(".hero-image > img", {
-    clipPath: "polygon(100% 0%,0% 0%,0% 100%,100% 100%)",
-    duration: 1,
-    ease: "power4.inOut",
-    stagger: 0.25,
-    delay: 9,
+  // Image sequence animation with left-to-right reveal
+  const images = document.querySelectorAll(".hero-image > img");
+
+  // Initially hide images
+  images.forEach((image, index) => {
+    gsap.set(image, {
+      clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+    });
+  });
+
+  // Create a timeline for sequential animations
+  const tl = gsap.timeline();
+
+  images.forEach((image, index) => {
+    // Reveal each image with a 3-second duration and 3-second delay before the next one
+    tl.to(image, {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // Reveal the image
+      duration: 1.5, // Time for the image reveal
+      ease: "power4.inOut",
+    }).to(
+      image,
+      {
+        duration: 1.5, // Stay for 3 seconds after reveal
+        delay: 0.5, // Add a little delay so the image stays visible
+      },
+      "+=0.5"
+    ); // Start after the reveal duration
   });
 
   gsap.to(".hero", {
@@ -106,63 +122,4 @@ document.addEventListener("DOMContentLoaded", function () {
     ease: "power3.out",
     delay: 11,
   });
-});
-
-// Wait for the DOM content to load
-document.addEventListener("DOMContentLoaded", () => {
-  const targetElement = document.querySelector(".alvi"); // Target element
-  const observer = new MutationObserver((mutationsList) => {
-    for (const mutation of mutationsList) {
-      if (
-        mutation.type === "attributes" &&
-        !targetElement.classList.contains("hidden")
-      ) {
-        // Redirect when the target element is visible
-        window.location.href = "landing_page.html";
-      }
-    }
-  });
-
-  // Observe changes in the target element's attributes
-  observer.observe(targetElement, { attributes: true });
-
-  // Simulate showing the header after some time (for demo purposes)
-  setTimeout(() => {
-    targetElement.classList.remove("hidden"); // Make the header visible
-  }, 20000); // Adjust the time as needed
-});
-
-//lets see
-
-document.addEventListener("DOMContentLoaded", () => {
-  const images = document.querySelectorAll(".hero-image img");
-
-  // Show the first image immediately
-  const firstImage = images[0];
-  firstImage.classList.remove("hidden");
-  firstImage.classList.add("visible");
-
-  // Load subsequent images sequentially
-  let currentIndex = 1;
-
-  function loadNextImage(index) {
-    if (index >= images.length) return;
-
-    const img = images[index];
-    const tempImg = new Image();
-    tempImg.src = img.src;
-
-    tempImg.onload = () => {
-      img.classList.remove("hidden");
-      img.classList.add("visible");
-      setTimeout(() => loadNextImage(index + 1), 3000);
-    };
-
-    tempImg.onerror = () => {
-      console.error(`Failed to load image: ${img.src}`);
-    };
-  }
-
-  // Start loading the second image
-  loadNextImage(currentIndex);
 });

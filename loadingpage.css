@@ -169,27 +169,3 @@ h1 span {
     padding: 1em;
   }
 }
-
-.hidden {
-  display: none;
-}
-
-.hero-image {
-  position: relative;
-  background: url("images/view-ancient-roman-empire-architecture.jpg") no-repeat
-    center center;
-  background-size: cover;
-}
-
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  display: none;
-  transition: opacity 1s ease-in-out;
-  opacity: 0;
-}
-
-.hero-image img.visible {
-  display: block;
-  opacity: 1;
-}
