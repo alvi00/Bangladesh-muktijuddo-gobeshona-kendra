@@ -129,5 +129,40 @@ document.addEventListener("DOMContentLoaded", () => {
   // Simulate showing the header after some time (for demo purposes)
   setTimeout(() => {
     targetElement.classList.remove("hidden"); // Make the header visible
-  }, 13000); // Adjust the time as needed
+  }, 20000); // Adjust the time as needed
+});
+
+//lets see
+
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".hero-image img");
+
+  // Show the first image immediately
+  const firstImage = images[0];
+  firstImage.classList.remove("hidden");
+  firstImage.classList.add("visible");
+
+  // Load subsequent images sequentially
+  let currentIndex = 1;
+
+  function loadNextImage(index) {
+    if (index >= images.length) return;
+
+    const img = images[index];
+    const tempImg = new Image();
+    tempImg.src = img.src;
+
+    tempImg.onload = () => {
+      img.classList.remove("hidden");
+      img.classList.add("visible");
+      setTimeout(() => loadNextImage(index + 1), 3000);
+    };
+
+    tempImg.onerror = () => {
+      console.error(`Failed to load image: ${img.src}`);
+    };
+  }
+
+  // Start loading the second image
+  loadNextImage(currentIndex);
 });
