@@ -9,7 +9,7 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: #ebdc0b;
+  background-color: rgb(15, 14, 14);
 }
 
 img {
@@ -47,6 +47,7 @@ img {
   font-family: "Stylish", serif;
   font-size: 60px;
   line-height: 60px;
+  color: aliceblue;
 }
 
 .counter {
@@ -65,6 +66,7 @@ img {
 .digit-4 {
   position: relative;
   top: -15px;
+  color: aliceblue;
 }
 
 .offset {
@@ -77,7 +79,7 @@ img {
   top: -15px;
   width: 0%;
   height: 4px;
-  background-color: black;
+  background-color: white;
 }
 
 .hero-image {
@@ -161,5 +163,9 @@ h1 span {
   .offset {
     position: relative;
     right: -5px;
+  }
+  .hero,
+  .pre-loader {
+    padding: 1em;
   }
 }

@@ -91,4 +91,19 @@ document.addEventListener("DOMContentLoaded", function () {
     ease: "power3.inOut",
     delay: 9,
   });
+
+  gsap.to("nav", {
+    y: 0,
+    duration: 1,
+    ease: "power3.out",
+    delay: 11,
+  });
+
+  gsap.to("h1 span", {
+    top: "0px",
+    stagger: 0.1,
+    duration: 1,
+    ease: "power3.out",
+    delay: 11,
+  });
 });
