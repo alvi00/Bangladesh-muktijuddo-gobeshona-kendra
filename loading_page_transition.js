@@ -107,3 +107,27 @@ document.addEventListener("DOMContentLoaded", function () {
     delay: 11,
   });
 });
+
+// Wait for the DOM content to load
+document.addEventListener("DOMContentLoaded", () => {
+  const targetElement = document.querySelector(".alvi"); // Target element
+  const observer = new MutationObserver((mutationsList) => {
+    for (const mutation of mutationsList) {
+      if (
+        mutation.type === "attributes" &&
+        !targetElement.classList.contains("hidden")
+      ) {
+        // Redirect when the target element is visible
+        window.location.href = "landing_page.html";
+      }
+    }
+  });
+
+  // Observe changes in the target element's attributes
+  observer.observe(targetElement, { attributes: true });
+
+  // Simulate showing the header after some time (for demo purposes)
+  setTimeout(() => {
+    targetElement.classList.remove("hidden"); // Make the header visible
+  }, 13000); // Adjust the time as needed
+});

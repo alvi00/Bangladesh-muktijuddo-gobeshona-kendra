@@ -169,3 +169,7 @@ h1 span {
     padding: 1em;
   }
 }
+
+.hidden {
+  display: none;
+}
