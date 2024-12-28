@@ -123,3 +123,21 @@ document.addEventListener("DOMContentLoaded", function () {
     delay: 11,
   });
 });
+
+// Simulate loading completion or custom tasks
+function completeTasks() {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 15000); // Simulates a 3-second loading process
+  });
+}
+
+// Redirect logic
+async function redirectToLandingPage() {
+  console.log("Starting tasks...");
+  await completeTasks(); // Wait for tasks to complete
+  console.log("Tasks completed. Redirecting...");
+  window.location.href = "landing_page.html"; // Redirect to the landing page
+}
+
+// Start redirection after the page loads
+window.onload = redirectToLandingPage;
