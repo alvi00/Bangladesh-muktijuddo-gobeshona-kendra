@@ -163,3 +163,17 @@ section.ws {
   width: 100%;
   height: 100%;
 }
+
+@media (max-width: 768px) {
+  .gallary-wrapper {
+    gap: 2em; /* Reduce the gap between columns */
+  }
+
+  .col {
+    gap: 2em; /* Reduce the gap between images in each column */
+  }
+
+  .img.main img {
+    transform: scale(1.5); /* Adjust the scale for better fit */
+  }
+}
