@@ -177,3 +177,6 @@ section.ws {
     transform: scale(1.5); /* Adjust the scale for better fit */
   }
 }
+body::-webkit-scrollbar {
+  width: 0; /* Hide scrollbar for Chrome, Safari, and Edge */
+}
